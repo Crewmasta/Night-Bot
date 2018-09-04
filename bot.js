@@ -11,7 +11,22 @@ client.on('message', msg => {
   }
 });
 
+client.on("message", message => {
+  if(message.content === "-help"){
+    let hHEmbed = new Discord.RichEmbed()
+    .setTitle("Night commands list :")
+    .setColor("RANDOM")
+    .setDescription(`Test lol`);
+    message.author.send(hHEmbed);
+  }
+});
 
+
+client.on("message", message => {
+  if(message.content === "-help"){
+    message.reply("شيك خاصك :dove: :rose:")
+  }
+});
 
 
 client.login(process.env.BOT_TOKEN); 
