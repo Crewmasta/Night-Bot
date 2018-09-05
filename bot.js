@@ -13,7 +13,7 @@ client.on('message', msg => {
 
 
 client.on("messageDelete", async message => {
-  let messageChannel = message.guild.channels.find(`name`, "logs")
+  let messageChannel = message.guild.channels.find(`name`, "log")
   let messageEmbed = new Discord.RichEmbed()
   .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL}`)
   .setTimestamp()
@@ -23,6 +23,7 @@ client.on("messageDelete", async message => {
   .setFooter(`${message.author.tag}`, `${message.author.displayAvatarURL}`);
   messageChannel.send(messageEmbed);
 });
+
 
 
 client.on("message", async message => {
