@@ -12,6 +12,27 @@ client.on('message', msg => {
 });
 
 
+
+client.on("message", async message => {
+
+
+  let messageArray = message.content.split (" ");
+  let args = messageArray.slice(1);
+
+
+
+
+
+
+if(message.content === "-clear"){
+if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No , Check your perms dude");
+if(!args[0]) return message.channel.send("-clear <number>");
+message.channel.bulkDelete(args[0]).then(msg => message.delete(5000))
+  message.channel.send(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `)
+}
+});
+
+
 client.on("messageDelete", async message => {
   let messageChannel = message.guild.channels.find(`name`, "log")
   let messageEmbed = new Discord.RichEmbed()
