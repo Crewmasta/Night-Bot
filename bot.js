@@ -27,10 +27,10 @@ client.on("message", async message => {
 if(message.content === "-clear"){
 if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No , Check your perms dude");
 if(!args[0]) return message.channel.send("-clear <number>");
-message.channel.bulkDelete(args[0]).then(msg => message.delete(5000))
+message.channel.bulkDelete(args[0]).then(msg => msg.delete(5000))
   message.channel.send(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `) {
 }
-}
+});
 });
 
 
