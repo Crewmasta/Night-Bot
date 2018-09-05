@@ -11,6 +11,143 @@ client.on('message', msg => {
   }
 });
 
+
+client.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+
+  let prefix = "-";
+  let messageArray = message.content.split (" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
+
+
+
+    if(cmd === `${prefix}kick`){
+
+
+
+      let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+      if(!kUser) return message.channel.send("فين العضو ؟");
+      let kReason = args.join(" ").slice(22);
+      if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما عندك برمشن");
+      if(kUser.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما تقدر تسوي كيك للأدمين")
+
+      let kickEmbed = new Discord.RichEmbed()
+      .setDescription("~Kick~")
+      .setColor("#e56b00")
+      .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
+      .addField("Kicked By", `<@${message.author.id}> with the id ${message.author.id}`)
+      .addField("Kicked In", message.channel)
+      .addField("Time", message.createdAt)
+      .addField("Reason", kReason);
+
+      let kickChannel = message.guild.channels.find('name', 'kick-ban');
+      if(!kickChannel) return message.channel.send("Cannot find kick-ban channel.");
+
+      message.guild.member(kUser).kick(kReason)
+      kickChannel.send(kickEmbed);
+    }
+    });
+
+
+
+client.on("message", async message => {
+  if(message.content === "-avatar"){
+    let aEmbed = new Discord.RichEmbed()
+    .setImage(`${message.author.displayAvatarURL}`);
+message.channel.send(aEmbed);
+  }
+});
+
+
+client.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+
+  let prefix = botconfig.prefix;
+  let messageArray = message.content.split (" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
+
+
+
+
+
+
+  if(cmd === `${prefix}embed`){
+     if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Oh hell noooo oof , You don't have permission biacht");
+    let botembedmessage = args.join(" ");
+    message.delete().catch();
+    let botLol = new Discord.RichEmbed()
+    .setDescription(botembedmessage)
+    .setColor("RANDOM")
+    message.channel.send(botLol);
+  }
+});
+
+
+
+client.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+
+  let prefix = botconfig.prefix;
+  let messageArray = message.content.split (" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
+
+
+
+
+
+
+  if(cmd === `${prefix}say`){
+     if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Oh hell noooo oof , You don't have permission biacht");
+    let botmessage = args.join(" ");
+    message.delete().catch();
+    message.channel.send(botmessage);
+  }
+});
+
+    client.on("message", async message => {
+      if(message.author.bot) return;
+      if(message.channel.type === "dm") return;
+
+      let prefix = "-";
+      let messageArray = message.content.split (" ");
+      let cmd = messageArray[0];
+      let args = messageArray.slice(1);
+
+
+
+        if(cmd === `${prefix}ban`){
+
+
+
+          let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+          if(!kUser) return message.channel.send("فين العضو ؟");
+          let kReason = args.join(" ").slice(22);
+          if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما عندك برمشن");
+          if(kUser.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما تقدر تسوي كيك للأدمين")
+
+          let banEmbed = new Discord.RichEmbed()
+          .setDescription("~Ban~")
+          .setColor("#8e0505")
+          .addField("Banned User", `${bUser} with ID ${bUser.id}`)
+          .addField("Banned By", `<@${message.author.id}> with the id ${message.author.id}`)
+          .addField("Banned In", message.channel)
+          .addField("Time", message.createdAt)
+          .addField("Reason", kReason);
+
+          let banChannel = message.guild.channels.find('name', 'kick-ban');
+          if(!banChannel) return message.channel.send("لازم يكون في روم اسمة kick-ban");
+
+          message.guild.member(bUser).kick(bReason)
+          banChannel.send(banEmbed);
+        }
+        });
+
 client.on("message", message => {
   if(message.content === "-help"){
     let hHEmbed = new Discord.RichEmbed()
