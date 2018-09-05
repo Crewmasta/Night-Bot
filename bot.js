@@ -12,6 +12,19 @@ client.on('message', msg => {
 });
 
 
+client.on("messageDelete", async message => {
+  let messageChannel = message.guild.channels.find(`name`, "logs")
+  let messageEmbed = new Discord.RichEmbed()
+  .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL}`)
+  .setTimestamp()
+  .setDescription(`:wastebasket: Message sent by ${message.author} deleted in ${message.channel}
+  \`\`\` ${message} \`\`\` `)
+  .setColor("#00000")
+  .setFooter(`${message.author.tag}`, `${message.author.displayAvatarURL}`);
+  messageChannel.send(messageEmbed);
+});
+
+
 client.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
