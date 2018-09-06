@@ -12,9 +12,12 @@ client.on('message', msg => {
 });
 
 client.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
 
-
+  let prefix = "-";
   let messageArray = message.content.split (" ");
+  let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
 
@@ -22,21 +25,31 @@ client.on("message", async message => {
 
 
 
-if(message.content === "-clear"){
-if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No , Check your perms dude");
-          var msg = parseInt(args);
-message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(args[0])).catch(console.error);
-message.channel.send(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `);
-  
- 
-if(!args[0]) return;      
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `).then(msg => {msg.delete(3000)});
-                   
+  if(cmd === `${prefix}report`){
+
+
+
+  let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!rUser) return message.channel.send("لم اجد العضو");
+  let reason = args.join(" ").slice(22);
+
+  let reportEmbed = new Discord.RichEmbed()
+  .setDescription("Reports")
+  .setColor("#15f153")
+  .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
+  .addField("Reported by", `${message.author} with ID: ${message.author.id}`)
+  .addField("Channel", message.channel)
+  .addField("Time", message.createdAt)
+  .addField("Reason", reason);
+
+ let reportschannel = message.guild.channels.find("name", "reports");
+ if(!reportschannel) return message.channel.send("لم اجد الروم حقت الريبورتات يخوي لول");
+
+
+ message.delete().catch(O_o=> {});
+ reportschannel.send(reportEmbed);
 }
-});
-
-
+}); 
 client.on("messageDelete", async message => {
   let messageChannel = message.guild.channels.find(`name`, "log")
   let messageEmbed = new Discord.RichEmbed()
