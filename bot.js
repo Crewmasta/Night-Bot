@@ -11,8 +11,6 @@ client.on('message', msg => {
   }
 });
 
-
-
 client.on("message", async message => {
 
 
@@ -37,12 +35,11 @@ if(!args[0]) return;
       
       message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
       message.channel.sendMessage(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `).then(msg => {msg.delete(3000)});
-                          }
-
+                    
     
 }
 });
-});
+
 
 
 client.on("messageDelete", async message => {
