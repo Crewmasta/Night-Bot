@@ -39,8 +39,7 @@ if(!args[0]) return;
       message.channel.sendMessage(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `).then(msg => {msg.delete(3000)});
                           }
 
-     
-});
+    
 }
 });
 });
