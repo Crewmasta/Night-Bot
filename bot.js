@@ -24,22 +24,17 @@ client.on("message", async message => {
 
 if(message.content === "-clear"){
 if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No , Check your perms dude");
+          var msg = parseInt(args);
 message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(args[0])).catch(console.error);
 message.channel.send(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `);
   
-  
-  
-if(!args[0]) return;
-          var msg;
-        msg = parseInt();
-      
+ 
+if(!args[0]) return;      
       message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
       message.channel.sendMessage(`\`\`\` ${args[0]} : عدد الرسائل الذي تم مسحها \`\`\` `).then(msg => {msg.delete(3000)});
-                    
-    
+                   
 }
 });
-
 
 
 client.on("messageDelete", async message => {
