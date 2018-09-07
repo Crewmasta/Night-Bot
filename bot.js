@@ -50,8 +50,13 @@ client.on("message", async message => {
  reportschannel.send(reportEmbed);
 }
 }); 
+
+
+
 client.on("messageDelete", async message => {
-  let messageChannel = message.guild.channels.find(`name`, "log")
+  if(oldMessage.author.bot) return;
+  if(oldMessage.channel.type === "dm") return;
+  let messageChannel = message.guild.channels.find(`name`, "logs")
   let messageEmbed = new Discord.RichEmbed()
   .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL}`)
   .setTimestamp()
@@ -60,7 +65,32 @@ client.on("messageDelete", async message => {
   .setColor("#00000")
   .setFooter(`${message.author.tag}`, `${message.author.displayAvatarURL}`);
   messageChannel.send(messageEmbed);
+
+
+
 });
+
+
+
+client.on("messageUpdate", async (oldMessage, newMessage) => {
+  if(oldMessage.author.bot) return;
+  if(oldMessage.channel.type === "dm") return;
+  let messageupdatechannel = oldMessage.guild.channels.find(`name`, "logs")
+  let messageupdateEmbed = new Discord.RichEmbed()
+  .setAuthor(`${oldMessage.author.tag}`, `${oldMessage.author.displayAvatarURL}`)
+  .setDescription(`:pencil2: Message sent by <@${oldMessage.author.id}> edited in ${oldMessage.channel}
+    Old:
+    \`\`\` ${oldMessage} \`\`\`
+    New:
+    \`\`\` ${newMessage} \`\`\` `)
+    .setColor(`#00000`)
+    .setTimestamp()
+    .setFooter(`${oldMessage.author.tag}`, `${oldMessage.author.displayAvatarURL}`);
+    messageupdatechannel.send(messageupdateEmbed);
+
+
+});
+
 
 
 
