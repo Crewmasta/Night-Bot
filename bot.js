@@ -54,7 +54,7 @@ client.on('message', message => {
     })
     }
     });  
-
+var prefix = "-";
   client.on('message',async message => {
   if(message.content.startsWith(prefix + "server")) {
     let embed = new Discord.RichEmbed()
@@ -83,7 +83,7 @@ client.on('message', message => {
 });
 
 
-
+var prefix = "-";
 client.on('message', msg => {
   if (msg.author.bot) return;
   if (!msg.content.startsWith(prefix)) return;
