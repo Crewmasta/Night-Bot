@@ -56,7 +56,7 @@ client.on("message", async message => {
 client.on("messageDelete", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
-  let messageChannel = message.guild.channels.find(`name`, "logs")
+  let messageChannel = message.guild.channels.find(`name`, "log")
   let messageEmbed = new Discord.RichEmbed()
   .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL}`)
   .setTimestamp()
@@ -75,7 +75,7 @@ client.on("messageDelete", async message => {
 client.on("messageUpdate", async (oldMessage, newMessage) => {
   if(oldMessage.author.bot) return;
   if(oldMessage.channel.type === "dm") return;
-  let messageupdatechannel = oldMessage.guild.channels.find(`name`, "logs")
+  let messageupdatechannel = oldMessage.guild.channels.find(`name`, "log")
   let messageupdateEmbed = new Discord.RichEmbed()
   .setAuthor(`${oldMessage.author.tag}`, `${oldMessage.author.displayAvatarURL}`)
   .setDescription(`:pencil2: Message sent by <@${oldMessage.author.id}> edited in ${oldMessage.channel}
