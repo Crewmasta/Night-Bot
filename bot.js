@@ -352,9 +352,7 @@ client.on("message", message => {
 -say :speaking_head:
 -embed :speaking_head:
 -report :cry:
--leaderboard :fleur_de_lis:
--give :1234:
--points :shrug:`);
+-avatar :grimacing:`);
     message.author.send(hHEmbed);
   }
 });
