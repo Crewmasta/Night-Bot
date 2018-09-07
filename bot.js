@@ -337,7 +337,14 @@ client.on("message", message => {
     let hHEmbed = new Discord.RichEmbed()
     .setTitle("Night commands list :")
     .setColor("RANDOM")
-    .setDescription(`Test lol`);
+    .setDescription(`-bc :smile:
+-ban :no_entry:
+-kick :thinking:
+-server :globe_with_meridians:
+-clear :urn:
+-say :speaking_head:
+-embed :speaking_head:
+-report :cry: `);
     message.author.send(hHEmbed);
   }
 });
