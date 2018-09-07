@@ -397,7 +397,10 @@ client.on("message", message => {
 -clear :urn:
 -say :speaking_head:
 -embed :speaking_head:
--report :cry: `);
+-report :cry:
+-leaderboard :fleur_de_lis:
+-give :1234:
+-points :shrug:`);
     message.author.send(hHEmbed);
   }
 });
