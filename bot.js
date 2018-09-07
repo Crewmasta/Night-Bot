@@ -54,8 +54,8 @@ client.on("message", async message => {
 
 
 client.on("messageDelete", async message => {
-  if(oldMessage.author.bot) return;
-  if(oldMessage.channel.type === "dm") return;
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
   let messageChannel = message.guild.channels.find(`name`, "logs")
   let messageEmbed = new Discord.RichEmbed()
   .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL}`)
