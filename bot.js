@@ -334,7 +334,7 @@ client.on("message", async message => {
           let banChannel = message.guild.channels.find('name', 'kick-ban');
           if(!banChannel) return message.channel.send("لازم يكون في روم اسمة kick-ban");
 
-          message.guild.member(bUser).kick(bReason)
+          message.guild.member(bUser).ban(bReason)
           banChannel.send(banEmbed);
         }
         });
